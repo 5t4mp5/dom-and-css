@@ -1,6 +1,6 @@
 //TODO DRY OUT CLEAN UP REFACTOR
 
-const colors = ['red', 'green', 'blue', 'yellow', 'purple', 'orange', 'pink'];
+const colors = ['red', 'green', 'blue', 'pink', 'orange', 'yellow', 'purple', 'black'];
 colors.forEach(color => {
     const square = document.createElement('div');
     square.setAttribute('class', 'squares');
@@ -17,6 +17,8 @@ const switchBlue = document.querySelector('#switchBlue');
 colors.forEach((color, idx) => {
     squareList[idx].setAttribute('style', `background-color: ${color}`);
     squareList[idx].setAttribute('id', color);
+    const newDiv = document.createElement('div');
+    document.querySelector('#colorButtons').appendChild(newDiv);
     const button = document.createElement('button');
     button.id = `${color}Switch`;
     button.setAttribute('class', 'colorButtons');
@@ -25,7 +27,7 @@ colors.forEach((color, idx) => {
     button.addEventListener('click', function(){
         switchDisplayOne(color, this);
     });
-    document.querySelector('#colorButtons').appendChild(button);
+    newDiv.appendChild(button);
 });
 
 
