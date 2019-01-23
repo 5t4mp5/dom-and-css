@@ -1,0 +1,21 @@
+.squares {
+    width: 150px;
+    height: 150px;
+    border: solid 1px black;
+    margin: 20px 20px;
+    display: inline-block;
+}
+
+#squares{
+    text-align: center;
+}
+
+#buttons{
+    text-align: center;
+}
+
+.buttons{
+    width: 300px;
+    margin: 10px;
+}
+
