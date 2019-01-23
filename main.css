@@ -11,11 +11,11 @@
     text-align: center;
 }
 
-#buttons{
+#buttons, #colorButtons{
     text-align: center;
 }
 
-.buttons{
+.buttons, .colorButtons{
     width: 300px;
     margin: 10px;
 }
