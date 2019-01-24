@@ -1,3 +1,10 @@
+//add title to header
+const title = 'SQUARES';
+const pageTitle = document.createElement('title');
+pageTitle.innerHTML = title;
+document.querySelector('head').appendChild(pageTitle);
+
+
 //set up containers and basic style elements
 const squareContainer = document.createElement('p');
 squareContainer.setAttribute('id', 'squares');
