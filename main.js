@@ -1,27 +1,72 @@
-//TODO REFACTOR CODE TO CREATE SQUARES TO FUNC
-
 const colors = ['red', 'green', 'blue', 'pink', 'yellow'];
-colors.forEach(color => {
-    const square = document.createElement('div');
-    square.setAttribute('class', 'squares');
-    document.querySelector('#squares').appendChild(square);
-});
 
-const squareList = [...document.querySelectorAll('.squares')];
+
+//html element setup
+
+colors.forEach((color) => {
+    createSquare(color);
+    createColorButton(color);
+});
 
 const showAll = createMainButton('SHOW ALL', 'showAll', 'none');
 const hideAll = createMainButton('HIDE ALL', 'hideAll', '');
 
-colors.forEach((color, idx) => {
-    squareList[idx].setAttribute('style', `background-color: ${color}`);
-    squareList[idx].setAttribute('id', color);
-    
-    createColorButton(color);
+hideAll.addEventListener('click', function(){
+    switchDisplayAll('none');
 });
 
+showAll.addEventListener('click', function(){
+    switchDisplayAll('');
+});
 
+const squareList = [...document.querySelectorAll('.squares')];
 const colorButtons = [...document.querySelectorAll('.colorButtons')];
-console.log(colorButtons);
+
+//style setup
+const squareContainer = document.querySelector('#squares');
+const buttonContainer = document.querySelector('#buttons');
+const colorButtonContainer = document.querySelector('#colorButtons');
+
+
+squareContainer.setAttribute('style', 'text-align: center');
+buttonContainer.setAttribute('style', 'text-align: center');
+colorButtonContainer.setAttribute('style', 'text-align: center');
+
+
+//functions
+function createSquare(color){
+    const square = document.createElement('div');
+    square.setAttribute('class', 'squares');
+    document.querySelector('#squares').appendChild(square);
+    square.setAttribute('style', `background-color: ${color}; width: 150px; height: 150px;  border: solid 1px black; margin: 20px 20px; display: inline-block;`);
+    square.setAttribute('id', color);
+}
+
+function createMainButton(text, id, display = ''){
+    const button = document.createElement('button');
+    button.innerHTML = text;
+    button.setAttribute('class', 'buttons');
+    button.setAttribute('id', id);
+    button.setAttribute('style', 'width: 300px; margin: 10px');
+    button.style.display = display;
+    document.querySelector('#buttons').appendChild(button);
+    return button;
+}
+
+function createColorButton(color){
+    const newDiv = document.createElement('div');
+    document.querySelector('#colorButtons').appendChild(newDiv);
+    const button = document.createElement('button');
+    button.id = `${color}Switch`;
+    button.setAttribute('class', 'colorButtons');
+    button.setAttribute('switch', 'off');
+    button.setAttribute('style', 'width: 300px; margin: 10px');
+    button.innerHTML = `HIDE ${color.toUpperCase()}`;
+    button.addEventListener('click', function(){
+        switchDisplayOne(color, this);
+    });
+    newDiv.appendChild(button);
+}
 
 function switchDisplayAll(display){
     const opposite = {none: '', '': 'none'};
@@ -38,7 +83,7 @@ function switchDisplayAll(display){
 function switchDisplayOne(color, button, forceStatus){
     const square = squareList.find(square => square.getAttribute('id') === color);
     if(forceStatus === 'on'){
-        square.style.display = '';
+        square.style.display = 'inline-block';
         button.setAttribute('switch', 'off');
         button.innerHTML = `HIDE ${color.toUpperCase()}`;
     }else if(forceStatus === 'off'){
@@ -51,7 +96,7 @@ function switchDisplayOne(color, button, forceStatus){
             button.setAttribute('switch', 'on');
             button.innerHTML = `SHOW ${color.toUpperCase()}`;
         }else{
-            square.style.display = '';
+            square.style.display = 'inline-block';
             button.setAttribute('switch', 'off');
             button.innerHTML = `HIDE ${color.toUpperCase()}`;
         }
@@ -60,43 +105,11 @@ function switchDisplayOne(color, button, forceStatus){
     if (squareList.every(square => square.style.display === 'none')){
         showAll.style.display = '';
         hideAll.style.display = 'none';
-    }else if(squareList.every(square => square.style.display === '')){
+    }else if(squareList.every(square => square.style.display === 'inline-block')){
         showAll.style.display = 'none';
         hideAll.style.display = '';
-    }else if(squareList.some(square => square.style.display === '')){
+    }else if(squareList.some(square => square.style.display === 'inline-block')){
         showAll.style.display = '';
         hideAll.style.display = '';
     };
 }
-
-function createMainButton(text, id, display = ''){
-    const button = document.createElement('button');
-    button.innerHTML = text;
-    button.setAttribute('class', 'buttons');
-    button.setAttribute('id', id);
-    button.style.display = display;
-    document.querySelector('#buttons').appendChild(button);
-    return button;
-}
-
-function createColorButton(color){
-    const newDiv = document.createElement('div');
-    document.querySelector('#colorButtons').appendChild(newDiv);
-    const button = document.createElement('button');
-    button.id = `${color}Switch`;
-    button.setAttribute('class', 'colorButtons');
-    button.setAttribute('switch', 'off');
-    button.innerHTML = `HIDE ${color.toUpperCase()}`;
-    button.addEventListener('click', function(){
-        switchDisplayOne(color, this);
-    });
-    newDiv.appendChild(button);
-}
-
-hideAll.addEventListener('click', function(){
-    switchDisplayAll('none');
-});
-
-showAll.addEventListener('click', function(){
-    switchDisplayAll('');
-});
