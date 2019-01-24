@@ -6,17 +6,25 @@ document.querySelector('head').appendChild(pageTitle);
 
 
 //set up containers and basic style elements
-const squareContainer = document.createElement('p');
+const masterContainer = document.createElement('p');
+document.querySelector('body').appendChild(masterContainer);
+const squareContainer = document.createElement('div');
+masterContainer.appendChild(squareContainer);
+const mainButtonContainer = document.createElement('div');
+masterContainer.appendChild(mainButtonContainer);
+const colorButtonContainer = document.createElement('div');
+masterContainer.appendChild(colorButtonContainer);
+
 squareContainer.setAttribute('id', 'squares');
-squareContainer.setAttribute('style', 'text-align: center');
+squareContainer.setAttribute('style', 'text-align: center; height: 200px');
 document.querySelector('body').appendChild(squareContainer);
 
-const mainButtonContainer = document.createElement('p');
+
 mainButtonContainer.setAttribute('id', 'buttons');
-mainButtonContainer.setAttribute('style', 'text-align: center; width: 100%;');
+mainButtonContainer.setAttribute('style', 'text-align: center;');
 document.querySelector('body').appendChild(mainButtonContainer);
 
-const colorButtonContainer = document.createElement('p');
+
 colorButtonContainer.setAttribute('id', 'colorButtons');
 colorButtonContainer.setAttribute('style', 'text-align: center; width: 100%;');
 document.querySelector('body').appendChild(colorButtonContainer);
