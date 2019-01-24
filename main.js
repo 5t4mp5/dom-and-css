@@ -1,7 +1,21 @@
-const colors = ['red', 'green', 'blue', 'pink', 'yellow'];
+//set up containers and basic style elements
+const squareContainer = document.createElement('p');
+squareContainer.setAttribute('id', 'squares');
+squareContainer.setAttribute('style', 'text-align: center');
+document.querySelector('body').appendChild(squareContainer);
 
+const mainButtonContainer = document.createElement('p');
+mainButtonContainer.setAttribute('id', 'buttons');
+mainButtonContainer.setAttribute('style', 'text-align: center');
+document.querySelector('body').appendChild(mainButtonContainer);
+
+const colorButtonContainer = document.createElement('p');
+colorButtonContainer.setAttribute('id', 'colorButtons');
+colorButtonContainer.setAttribute('style', 'text-align: center');
+document.querySelector('body').appendChild(colorButtonContainer);
 
 //html element setup
+const colors = ['red', 'green', 'blue', 'pink', 'yellow'];
 
 colors.forEach((color) => {
     createSquare(color);
@@ -21,17 +35,6 @@ showAll.addEventListener('click', function(){
 
 const squareList = [...document.querySelectorAll('.squares')];
 const colorButtons = [...document.querySelectorAll('.colorButtons')];
-
-//style setup
-const squareContainer = document.querySelector('#squares');
-const buttonContainer = document.querySelector('#buttons');
-const colorButtonContainer = document.querySelector('#colorButtons');
-
-
-squareContainer.setAttribute('style', 'text-align: center');
-buttonContainer.setAttribute('style', 'text-align: center');
-colorButtonContainer.setAttribute('style', 'text-align: center');
-
 
 //functions
 function createSquare(color){
