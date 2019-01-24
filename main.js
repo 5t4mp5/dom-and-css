@@ -1,6 +1,6 @@
-//TODO DRY OUT CLEAN UP REFACTOR
+//TODO REFACTOR CODE TO CREATE SQUARES AND COLOR BUTTONS TO FUNCS
 
-const colors = ['red', 'green', 'blue', 'pink', 'orange', 'yellow', 'purple', 'black'];
+const colors = ['red', 'green', 'blue', 'pink', 'yellow'];
 colors.forEach(color => {
     const square = document.createElement('div');
     square.setAttribute('class', 'squares');
@@ -9,18 +9,8 @@ colors.forEach(color => {
 
 const squareList = [...document.querySelectorAll('.squares')];
 
-const showAll = document.createElement('button');
-showAll.innerHTML = 'SHOW ALL';
-showAll.setAttribute('class', 'buttons');
-showAll.setAttribute('id', 'showAll');
-showAll.style.display = 'none';
-document.querySelector('#buttons').appendChild(showAll);
-
-const hideAll = document.createElement('button');
-hideAll.innerHTML = 'HIDE ALL';
-hideAll.setAttribute('class', 'buttons');
-hideAll.setAttribute('id', 'hideAll');
-document.querySelector('#buttons').appendChild(hideAll);
+const showAll = createMainButton('SHOW ALL', 'showAll', 'none');
+const hideAll = createMainButton('HIDE ALL', 'hideAll', '');
 
 colors.forEach((color, idx) => {
     squareList[idx].setAttribute('style', `background-color: ${color}`);
@@ -86,6 +76,16 @@ function switchDisplayOne(color, button, forceStatus){
         showAll.style.display = '';
         hideAll.style.display = '';
     };
+}
+
+function createMainButton(text, id, display = ''){
+    const button = document.createElement('button');
+    button.innerHTML = text;
+    button.setAttribute('class', 'buttons');
+    button.setAttribute('id', id);
+    button.style.display = display;
+    document.querySelector('#buttons').appendChild(button);
+    return button;
 }
 
 hideAll.addEventListener('click', function(){
