@@ -8,11 +8,19 @@ colors.forEach(color => {
 });
 
 const squareList = [...document.querySelectorAll('.squares')];
-const showAll = document.querySelector('#showAll');
-const hideAll = document.querySelector('#hideAll');
-const switchRed = document.querySelector('#switchRed');
-const switchGreen = document.querySelector('#switchGreen');
-const switchBlue = document.querySelector('#switchBlue');
+
+const showAll = document.createElement('button');
+showAll.innerHTML = 'SHOW ALL';
+showAll.setAttribute('class', 'buttons');
+showAll.setAttribute('id', 'showAll');
+showAll.style.display = 'none';
+document.querySelector('#buttons').appendChild(showAll);
+
+const hideAll = document.createElement('button');
+hideAll.innerHTML = 'HIDE ALL';
+hideAll.setAttribute('class', 'buttons');
+hideAll.setAttribute('id', 'hideAll');
+document.querySelector('#buttons').appendChild(hideAll);
 
 colors.forEach((color, idx) => {
     squareList[idx].setAttribute('style', `background-color: ${color}`);
