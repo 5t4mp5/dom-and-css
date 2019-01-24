@@ -43,7 +43,7 @@ showAll.addEventListener('click', function(){
 const squareList = [...document.querySelectorAll('.squares')];
 const colorButtons = [...document.querySelectorAll('.colorButtons')];
 
-//functions
+//create functions
 function createSquare(color){
     const square = document.createElement('div');
     square.setAttribute('class', 'squares');
@@ -53,11 +53,7 @@ function createSquare(color){
 }
 
 function createMainButton(text, id, display = ''){
-    const button = document.createElement('button');
-    button.innerHTML = text;
-    button.setAttribute('class', 'buttons');
-    button.setAttribute('id', id);
-    button.setAttribute('style', 'width: 300px; margin: 10px');
+    const button = buttonMaker('buttons', id, text);
     button.style.display = display;
     document.querySelector('#buttons').appendChild(button);
     return button;
@@ -66,18 +62,25 @@ function createMainButton(text, id, display = ''){
 function createColorButton(color){
     const newDiv = document.createElement('div');
     document.querySelector('#colorButtons').appendChild(newDiv);
-    const button = document.createElement('button');
-    button.id = `${color}Switch`;
-    button.setAttribute('class', 'colorButtons');
+    const button = buttonMaker('colorButtons', `${color}Switch`, `HIDE ${color.toUpperCase()}`);
     button.setAttribute('switch', 'off');
-    button.setAttribute('style', 'width: 300px; margin: 10px');
-    button.innerHTML = `HIDE ${color.toUpperCase()}`;
     button.addEventListener('click', function(){
         switchDisplayOne(color, this);
     });
     newDiv.appendChild(button);
+    return button;
 }
 
+function buttonMaker(buttonClass, id, text){
+    const button = document.createElement('button');
+    button.setAttribute('id', id);
+    button.setAttribute('class', buttonClass);
+    button.setAttribute('style', 'width: 300px; margin: 10px');
+    button.innerHTML = text
+    return button;
+}
+
+//Update Functions
 function switchDisplayAll(display){
     const opposite = {none: '', '': 'none'};
     hideAll.style.display = display;
@@ -111,7 +114,10 @@ function switchDisplayOne(color, button, forceStatus){
             button.innerHTML = `HIDE ${color.toUpperCase()}`;
         }
     }
+    updateShowHideAll();
+}
 
+function updateShowHideAll(){
     if (squareList.every(square => square.style.display === 'none')){
         showAll.style.display = '';
         hideAll.style.display = 'none';
@@ -121,5 +127,5 @@ function switchDisplayOne(color, button, forceStatus){
     }else if(squareList.some(square => square.style.display === 'inline-block')){
         showAll.style.display = '';
         hideAll.style.display = '';
-    };
+    }
 }
