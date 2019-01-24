@@ -13,12 +13,12 @@ document.querySelector('body').appendChild(squareContainer);
 
 const mainButtonContainer = document.createElement('p');
 mainButtonContainer.setAttribute('id', 'buttons');
-mainButtonContainer.setAttribute('style', 'text-align: center');
+mainButtonContainer.setAttribute('style', 'text-align: center; width: 100%;');
 document.querySelector('body').appendChild(mainButtonContainer);
 
 const colorButtonContainer = document.createElement('p');
 colorButtonContainer.setAttribute('id', 'colorButtons');
-colorButtonContainer.setAttribute('style', 'text-align: center');
+colorButtonContainer.setAttribute('style', 'text-align: center; width: 100%;');
 document.querySelector('body').appendChild(colorButtonContainer);
 
 //html element setup
@@ -75,7 +75,7 @@ function buttonMaker(buttonClass, id, text){
     const button = document.createElement('button');
     button.setAttribute('id', id);
     button.setAttribute('class', buttonClass);
-    button.setAttribute('style', 'width: 300px; margin: 10px');
+    button.setAttribute('style', 'width: 100%; height: 50px');
     button.innerHTML = text
     return button;
 }
